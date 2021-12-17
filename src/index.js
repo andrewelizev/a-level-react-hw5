@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import Films from './components/Films/Films'
 import ToDo from "./components/ToDo/ToDo";
 import TableToDos from './components/ToDo/TableToDos/TableToDos'
