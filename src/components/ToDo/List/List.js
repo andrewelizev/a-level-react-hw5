@@ -1,24 +1,31 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { toggle } from '../../../store/newList';
+import AddNewListItem from "../../AddNewListItem/AddNewListItem";
 import Button from "../../Button/Button";
 import Input from '../../Input/Input';
+import ToDoCategory from "../ToDoCategory/ToDoCategory";
 
 function List() {
+    const lists = useSelector(state => state.todo.lists);
+    const isVisibleNewList = useSelector(state => state.newList.visible);
+    const dispatch = useDispatch();
+
+    const onShowNewListForm = () => dispatch(toggle());
+
     return (
         <>
             <div className="card">
                 <Input />
                 <div className="list-group">
-                    <NavLink to="home" className="list-group-item list-group-item-action">Дом</NavLink>
-                    <NavLink to="work" className="list-group-item list-group-item-action">Работа</NavLink>
-                    <NavLink to="need" className="list-group-item list-group-item-action">То что надо</NavLink>
-                    <div>
-                        <input type="text" />
-                        <Button children='Сохранить' />
-                        <Button children='Отмена' />
-                    </div>
+                    {
+                        Object.keys(lists).map((listId) => (
+                            <ToDoCategory key={listId} {...lists[listId]} />
+                        ))
+                    }
+                    {isVisibleNewList && <AddNewListItem /> }
                 </div>
-                <Button children='Новый список' />
+                <Button onClick={onShowNewListForm} children='Новый список' />
             </div>
 
         </>

@@ -1,8 +1,0 @@
-import { createStore, combineReducers } from "redux";
-
-const store = createStore(combineReducers({
-    films: [],
-    todos: []
-}));
-
-export { store };

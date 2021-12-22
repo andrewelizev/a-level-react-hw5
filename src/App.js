@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-
-
+import { loadLists } from './store/actions';
+import { useDispatch } from 'react-redux';
 
 function App() {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(loadLists());
+	}, []);
+
 	return (
 		<>
 			<div>
