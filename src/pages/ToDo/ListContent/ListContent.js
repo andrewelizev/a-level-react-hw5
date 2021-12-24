@@ -1,6 +1,6 @@
 import React from "react";
-import Input from "../../Input/Input";
-import Button from "../../Button/Button";
+import Input from "../../../components/Button/Button";
+import Button from "../../../components/Button/Button";
 import { Outlet } from "react-router-dom";
 
 function ListContent() {

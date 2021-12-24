@@ -1,12 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import { reducer as todoReducer } from './reducer';
-import { reducer as newListReducer } from './newList';
+import { reducer as categoryReducer } from './categories/reducer';
+import { reducer as newCategoryReducer } from './newCategory/index';
 
 const rootReducer = combineReducers({
-    todo: todoReducer,
-    newList: newListReducer,
+    categories: categoryReducer,
+    newCategory: newCategoryReducer,
 });
 
 const enhancers = composeWithDevTools(

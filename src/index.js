@@ -6,9 +6,9 @@ import { store } from './store'
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import Films from './components/Films/Films'
-import ToDo from "./components/ToDo/ToDo";
-import TableToDos from './components/ToDo/TableToDos/TableToDos'
+import Films from './pages/Films/Films'
+import ToDo from "./pages/ToDo/ToDo";
+import TableToDos from './pages/ToDo/TableToDos/TableToDos'
 
 ReactDOM.render(
 	<BrowserRouter>
