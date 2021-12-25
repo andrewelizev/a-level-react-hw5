@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../constants';
 import { titleToUrl } from './utils';
-// import { setNewCategory } from '../Categories/actions';
+import { setNewCategory as setNewCategoryToList } from '../categories/actions';
 
 const actions = Object.freeze({
     SET_NEW_CATEGORY: 'newCategory/setNewCategory',
@@ -31,7 +31,10 @@ const saveNewCategory = () => (dispatch, getState) => {
     .then(res => res.json())
     .then((data) => {
         newCategory.id = data.name;
-        dispatch(setNewCategory(newCategory));
+        // debugger;
+        dispatch(setNewCategoryToList(newCategory));
+        // debugger;
+        dispatch(setNewCategory(''))
     });
 }
 

@@ -4,9 +4,8 @@ import { NavLink } from "react-router-dom";
 
 function ToDoCategory(props) {
     const listStyles = 'list-group-item list-group-item-action';
-
+console.log('>>>', props)
     return (
-        console.log('props ToDoCategory', props),
         <NavLink className={listStyles} to={props.path}>{props.children}</NavLink>
     )
 }

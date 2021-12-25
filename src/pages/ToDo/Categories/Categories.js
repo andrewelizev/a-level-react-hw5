@@ -8,14 +8,12 @@ import ToDoCategory from "../ToDoCategory/ToDoCategory";
 
 function Categories() {
     const dispatch = useDispatch();
-    const categories = useSelector(state => state.categories);
+    const categories = useSelector(state => state.categories.categories);
 
     console.log('categories', categories);
 
     const isVisibleNewList = useSelector(state => state.newCategory.visible);
     const onShowNewCategoryForm = () => dispatch(toggle());
-
-
 
     return (
         <>
@@ -25,9 +23,9 @@ function Categories() {
                     {
                         Object.keys(categories).length > 0
                         ? Object.keys(categories).map((listId) => (
-                              <ToDoCategory key={listId} to={categories[listId].path} children={categories[listId].title} />
+                              <ToDoCategory key={listId} path={categories[listId].path} children={categories[listId].title} />
                         ))
-                        : <ToDoCategory to={'todo'} children={'Nothing ToDo'} />
+                        : <ToDoCategory path={'todo'} children={'Nothing ToDo'} />
                     }
                     {isVisibleNewList && <AddNewCategoryItem /> }
                 </div>

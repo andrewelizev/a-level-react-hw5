@@ -6,7 +6,10 @@ const actions = Object.freeze({
    SET_CATEGORIES: 'categories/setCategories',
 });
 
-const setNewCategory = (payload) => ({ type: actions.SET_NEW_CATEGORY, payload });
+const setNewCategory = (payload) => {
+   // debugger;
+   return ({ type: actions.SET_NEW_CATEGORY, payload })
+};
 
 const setCategories = (payload) => ({ type: actions.SET_CATEGORIES, payload })
 
@@ -14,8 +17,8 @@ const loadCategories = () => (dispatch) => {
    fetch(`${BASE_URL}categories.json`)
       .then(res => res.json())
       .then(data => {
-         console.log('>>>', data);
-         dispatch(setCategories(data));
+         console.log('>>> action:', data);
+         dispatch(setCategories(data || {}));
       })
 }
 

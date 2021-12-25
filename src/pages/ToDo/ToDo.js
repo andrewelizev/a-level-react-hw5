@@ -9,7 +9,7 @@ function ToDo() {
 
     useEffect(() => {
 		dispatch(loadCategories());
-	}, [dispatch]);
+	}, []);
 
     return (
         <div className="card-group">
