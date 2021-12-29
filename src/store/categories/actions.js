@@ -1,4 +1,5 @@
 import { BASE_URL } from '../../constants';
+import {dissoc} from "ramda";
 
 
 const actions = Object.freeze({
@@ -26,7 +27,19 @@ const loadCategories = () => (dispatch) => {
       })
 }
 
-const onDelCategory = (payload) => ({ type: actions.DEL_CATEGORY, payload });
+const onDelCategory = (payload) => (dispatch) => {
+   fetch(`${BASE_URL}categories/${payload}.json`, {
+      method: 'DELETE',
+      body: '',
+   })
+       .then(res => res.json())
+       .then((data) => {
+          dispatch({ type: actions.DEL_CATEGORY, payload });
+       });
+
+
+   ;
+}
 
 
 

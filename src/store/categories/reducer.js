@@ -27,15 +27,10 @@ const showCategories = (state, payload) => {
     return newState;
 }
 
-const delCategory = (payload) => (dispatch) => {
-    fetch(`${BASE_URL}categories/${payload}.json`, {
-        method: 'DELETE',
-        body: '',
-    })
-        .then(res => res.json())
-        .then((data) => {
-            console.log('payload', payload);
-        });
+const delCategory = (state, payload) => {
+    const newState = clone(state);
+    delete newState[payload];
+    return newState;
 }
 
 const reducer = (state = initState, action) => {
@@ -43,7 +38,7 @@ const reducer = (state = initState, action) => {
     switch (action.type) {
         case actions.SET_NEW_CATEGORY: return setNewCategory(state, action.payload);
         case actions.SET_CATEGORIES: return { ...state, categories: action.payload };
-        case actions.DEL_CATEGORY: return delCategory(action.payload);
+        case actions.DEL_CATEGORY: return delCategory(state, action.payload);
         case actions.SHOW_CATEGORIES: return showCategories(state, action.payload)
         default: return state;
     }
