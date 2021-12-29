@@ -20,8 +20,8 @@ const toggle = () => ({ type: actions.TOGGLE });
 const saveNewCategory = () => (dispatch, getState) => {
     const clearValue = getState().newCategory.value.trim();
     const newCategory = {
-        title: clearValue, // children
-        path: titleToUrl(clearValue), // to
+        title: clearValue,
+        path: titleToUrl(clearValue),
     }
 
     fetch(`${BASE_URL}categories.json`, {

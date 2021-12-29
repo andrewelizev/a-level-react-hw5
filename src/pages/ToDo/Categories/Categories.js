@@ -10,7 +10,7 @@ function Categories() {
     const dispatch = useDispatch();
     const categories = useSelector(state => state.categories.categories);
 
-    console.log('categories', categories);
+    // console.log('categories', categories);
 
     const isVisibleNewList = useSelector(state => state.newCategory.visible);
     const onShowNewCategoryForm = () => dispatch(toggle());
@@ -23,7 +23,7 @@ function Categories() {
                     {
                         Object.keys(categories).length > 0
                         ? Object.keys(categories).map((listId) => (
-                              <ToDoCategory key={listId} path={categories[listId].path} children={categories[listId].title} />
+                              <ToDoCategory key={listId} path={categories[listId].path} children={categories[listId].title} id={listId} />
                         ))
                         : <ToDoCategory path={'todo'} children={'Nothing ToDo'} />
                     }
