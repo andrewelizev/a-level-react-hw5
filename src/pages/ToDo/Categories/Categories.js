@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { toggle } from '../../../store/newCategory';
 import AddNewCategoryItem from "../../../components/AddNewCategoryItem/AddNewCategoryItem";
@@ -9,17 +9,37 @@ import EditToDoCategory from "../ToDoCategory/EditToDoCategory";
 
 function Categories() {
     const dispatch = useDispatch();
-    const categories = useSelector(state => state.categories.categories);
+    const [search, setSearch] = useState('');
+
+    let categories =  useSelector(state => state.categories.categories);
     const isEdit = useSelector(state => state.editCategory)
-    // console.log('categories', categories);
 
     const isVisibleNewList = useSelector(state => state.newCategory.visible);
     const onShowNewCategoryForm = () => dispatch(toggle());
 
+    // let categoriesFiltered;
+    // const categoriesFiltered = categories.filter(elem => elem.title.includes(search))
+
+
+    function onSearchCategory(event) {
+        setSearch(event.target.value);
+        categories = Object.keys(categories).filter(id => categories[id].title.includes(search))
+        console.log('filtered: ', categories, 'search: ', search);
+        // console.log(categories);
+
+
+        // console.log('search categories: ', filterCategories);
+        // categories.map((elem) => elem.title.includes(search));
+    }
+
+    function clearField(event) {
+        setSearch('');
+    }
+
     return (
         <>
             <div className="card">
-                <Input />
+                <Input onChange={onSearchCategory} onClick={clearField} value={search} />
                 <div className="list-group">
                     {
                         Object.keys(categories).length > 0
