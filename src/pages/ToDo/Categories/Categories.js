@@ -7,6 +7,24 @@ import Input from '../../../components/Input/Input';
 import ToDoCategory from "../ToDoCategory/ToDoCategory";
 import EditToDoCategory from "../ToDoCategory/EditToDoCategory";
 
+function filterCategories(searchStr, categories) {
+    // const filteredCategories = Object.key(categories).reduce(id => categories[id].title.includes(searchStr))
+    const filteredCategories = categories.filter(elem => elem.title.includes(searchStr))
+
+    // Аргументы функции callback(previousValue, currentItem, index, arr):
+    //
+    // previousValue – последний результат вызова функции, он же «промежуточный результат».
+    // currentItem – текущий элемент массива, элементы перебираются по очереди слева-направо.
+    //     index – номер текущего элемента.
+    //     arr – обрабатываемый массив.
+
+
+
+
+    console.log('filtered: ', filteredCategories);
+    return filteredCategories;
+}
+
 function Categories() {
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
@@ -20,21 +38,22 @@ function Categories() {
     // let categoriesFiltered;
     // const categoriesFiltered = categories.filter(elem => elem.title.includes(search))
 
-
     function onSearchCategory(event) {
         setSearch(event.target.value);
-        categories = Object.keys(categories).filter(id => categories[id].title.includes(search))
-        console.log('filtered: ', categories, 'search: ', search);
-        // console.log(categories);
-
-
-        // console.log('search categories: ', filterCategories);
-        // categories.map((elem) => elem.title.includes(search));
+        // categories = Object.keys(categories).filter(id => categories[id].title.includes(search))
+        // console.log('filtered: ', categories, 'search: ', search);
+        // // console.log(categories);
+        //
+        //
+        // // console.log('search categories: ', filterCategories);
+        // // categories.map((elem) => elem.title.includes(search));
     }
 
     function clearField(event) {
         setSearch('');
     }
+
+    const filteredCategories = filterCategories(search, categories);
 
     return (
         <>
@@ -42,11 +61,11 @@ function Categories() {
                 <Input onChange={onSearchCategory} onClick={clearField} value={search} />
                 <div className="list-group">
                     {
-                        Object.keys(categories).length > 0
-                        ? Object.keys(categories).map((listId) => (
+                        Object.keys(filteredCategories).length > 0
+                        ? Object.keys(filteredCategories).map((listId) => (
                                 (isEdit.visible && listId === isEdit.id)
-                                    ? <EditToDoCategory key={listId} children={categories[listId].title} id={listId}  />
-                                    : <ToDoCategory key={listId} path={categories[listId].path} children={categories[listId].title} id={listId} />
+                                    ? <EditToDoCategory key={listId} children={filteredCategories[listId].title} id={listId}  />
+                                    : <ToDoCategory key={listId} path={filteredCategories[listId].path} children={filteredCategories[listId].title} id={listId} />
                         ))
                         : <ToDoCategory path={'todo'} children={'Nothing ToDo'} />
                     }
