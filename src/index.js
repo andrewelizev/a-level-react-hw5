@@ -9,6 +9,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import Films from './pages/Films/Films'
 import ToDo from "./pages/ToDo/ToDo";
 import TableToDos from './pages/ToDo/TableToDos/TableToDos'
+import LoginForm from "./pages/ToDo/Auth/LoginForm";
 
 ReactDOM.render(
 	<BrowserRouter>
@@ -21,6 +22,7 @@ ReactDOM.render(
 						<Route path='work' element={<TableToDos task='Make presentation' time='for an hour' />} />
 						<Route path='need' element={<TableToDos task='Make a plan' time='28.12.2021' />} />
 					</Route>
+					<Route path="login" element={<LoginForm/>} />
 				</Route>
 			</Routes>
 		</Provider>
