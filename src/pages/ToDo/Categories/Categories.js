@@ -15,7 +15,18 @@ function filterCategories(searchStr, categories) {
         return result
         }, []);
 
-    const filteredCategories = newCategories.reduce((result, elem) => (result[elem[0]] = elem[1], result), {});
+    const filteredCategories = newCategories.reduce((result, elem) => {
+        result[elem[0]] = elem[1];
+        return result;
+    }, {});
+
+    // const newCats = Object.keys(categories).reduce((result, catId) => {
+    //     if(categories[catId].title.includes(searchStr)){
+    //         result[catId] = categories[catId];
+    //     }
+    //
+    //     return result;
+    // }, {})
 
     // console.log('PRE FILTERED: ', newCategories);
     // console.log('FILTERED: ', filteredCategories);
