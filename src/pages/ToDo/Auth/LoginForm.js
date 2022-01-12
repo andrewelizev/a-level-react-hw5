@@ -2,9 +2,12 @@ import React from "react";
 import {Form, Button, Container, Row, Col} from 'react-bootstrap'
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-
+import {useDispatch} from "react-redux";
+import {logIn} from '../../../store/auth/actions'
 
 function LoginForm() {
+    const dispatch = useDispatch();
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -12,6 +15,7 @@ function LoginForm() {
         },
         onSubmit: values => {
             console.log(values);
+            dispatch(logIn(values.email, values.password));
         },
         validationScheme: yup.object().shape({
             email: yup.string().required().email(),
